@@ -26,7 +26,6 @@
         <div class="btn-group mr-2" role="group" aria-label="First group">
             <button type="button" onclick="add('b')" class="btn btn-secondary">粗体</button>
             <button type="button" onclick="add('i')" class="btn btn-secondary">斜体</button>
-            <button type="button" onclick="add('u')" class="btn btn-secondary">下划线</button>
             <button type="button" onclick="add('-')" class="btn btn-secondary">分割线</button>
             <button type="button" onclick="add('unordered')" class="btn btn-secondary">无序列表</button>
             <button type="button" onclick="add('ordered')" class="btn btn-secondary">有序列表</button>
@@ -56,7 +55,7 @@
         function add(a) {
             let text = document.getElementById("l");
             if (window.getSelection) {
-                let op = {"h1": ["# ", ""], "h2": ["## ", ""], "h3": ["### ", ""], "ordered": ["1. ", ""], "b": ["**", "**"], "i": ["*", "*"], "u": ["<u>", "</u>"],
+                let op = {"h1": ["# ", ""], "h2": ["## ", ""], "h3": ["### ", ""], "ordered": ["1. ", ""], "b": ["**", "**"], "i": ["*", "*"],
                     "-": ["", "\n\n---\n\n"], "unordered": ["- ", ""]}
                 let x=op[a][0],y=op[a][1];
                 text.value = text.value.slice(0, text.selectionStart)+x+text.value.slice(text.selectionStart,text.selectionEnd)+y+text.value.slice(text.selectionEnd);
