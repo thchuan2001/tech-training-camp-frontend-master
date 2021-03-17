@@ -1,8 +1,8 @@
-##项目文档
+## 项目文档
 
 markdown在线编辑器 
 
-###使用的技术:
+### 使用的技术:
 
 bootstrap，marked.js
 
