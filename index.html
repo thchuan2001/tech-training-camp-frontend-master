@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/marked/1.2.7/marked.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <br>
+    <div class="container">
+
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button type="button" onclick="add('b')" class="btn btn-secondary">粗体</button>
+            <button type="button" onclick="add('i')" class="btn btn-secondary">斜体</button>
+            <button type="button" onclick="add('u')" class="btn btn-secondary">下划线</button>
+            <button type="button" onclick="add('-')" class="btn btn-secondary">分割线</button>
+            <button type="button" onclick="add('unordered')" class="btn btn-secondary">有序列表</button>
+            <button type="button" onclick="add('ordered')" class="btn btn-secondary">无序列表</button>
+            <button type="button" onclick="add('h1')" class="btn btn-secondary">一级标题</button>
+            <button type="button" onclick="add('h2')" class="btn btn-secondary">二级标题</button>
+            <button type="button" onclick="add('h3')" class="btn btn-secondary">三级标题</button>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <textarea class="form-control" id="l" onkeyup="solve()" style="resize:none" rows="30"></textarea>
+                </div>
+            </div>
+            <div class="col">
+                <div id="r"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function solve() {let t = document.getElementById("l").value;document.getElementById("r").innerHTML = marked(t);}
+        function add(a) {
+            let text = document.getElementById("l");
+            if (window.getSelection) {
+                let op = {"h1": ["# ", ""], "h2": ["## ", ""], "h3": ["### ", ""], "ordered": ["1. ", ""], "b": ["**", "**"], "i": ["*", "*"], "u": ["<u>", "</u>"],
+                    "-": ["", "\n\n---\n\n"], "unordered": ["- ", ""]}
+                let x=op[a][0],y=op[a][1];
+                text.value = text.value.slice(0, text.selectionStart)+x+text.value.slice(text.selectionStart,text.selectionEnd)+y+text.value.slice(text.selectionEnd);
+            }
+            
+            solve();
+        }
+    </script>
+
+</body>
+
+</html>
